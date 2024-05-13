@@ -10,6 +10,9 @@ vim.keymap.set('n', ';', ':')
 vim.keymap.set('n', '.', ';')
 vim.keymap.set('n', '<leader>bb', '<C-^><CR>')
 
+vim.keymap.set('n', '<leader>m', '@m')
+vim.keymap.set('n', '<CR>', 'o<esc>')
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })

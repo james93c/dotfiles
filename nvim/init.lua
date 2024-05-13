@@ -327,6 +327,9 @@ require('lazy').setup({
         lua = { 'stylua' },
         go = { 'gofmt' },
         javascript = { 'prettier' },
+        typescript = { 'prettier' },
+        typescriptreact = { 'prettier' },
+        typescriptreact = { 'prettier' },
         sql = { 'sql-formatter' },
       },
     },
@@ -494,7 +497,9 @@ require('lazy').setup({
     init = function()
       vim.cmd.colorscheme 'panda'
       -- vim.cmd.hi 'Comment gui=none'
-      vim.cmd.highlight 'Normal guibg=#323334'
+      -- vim.cmd.highlight 'Normal guibg=#292A2C'
+      -- vim.cmd.highlight 'Visual guibg=#3C3D3E'
+      -- vim.cmd.highlight 'PmenuSel guibg=#606161'
     end,
   },
 
@@ -586,6 +591,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'vrischmann/tree-sitter-templ',
+      'nvim-treesitter/nvim-treesitter-context',
     },
     build = ':TSUpdate',
     opts = {
