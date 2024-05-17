@@ -15,6 +15,9 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term foot
+set $files nautilus
+set $ftp filezilla
+set $browser firefox
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -24,45 +27,25 @@ set $menu rofi -show combi
 include /etc/sway/config-vars.d/*
 
 ### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /home/james/Pictures/Wallpapers/budapest.jpg fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
 output * resolution 2560x1440@144Hz
 
-
-
 ### Idle configuration
-#
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sle
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
+input type:Touchpad {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+}
 
 ### Key bindings
 #
@@ -76,6 +59,15 @@ output * resolution 2560x1440@144Hz
 
     # Start your launcher
     bindsym $mod+d exec $menu
+
+    # Start file manager
+    bindsym $mod+n exec $files
+
+    # Start ftp
+    bindsym $mod+z exec $ftp
+
+    # Start browser
+    bindsym $mod+b exec $browser
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -93,65 +85,73 @@ output * resolution 2560x1440@144Hz
 # Moving around:
 #
     # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
+    bindsym $mod+$left  focus left
+    bindsym $mod+$down  focus down
+    bindsym $mod+$up    focus up
     bindsym $mod+$right focus right
     # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
+    bindsym $mod+Left  focus left
+    bindsym $mod+Down  focus down
+    bindsym $mod+Up    focus up
     bindsym $mod+Right focus right
 
     # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$left  move left
+    bindsym $mod+Shift+$down  move down
+    bindsym $mod+Shift+$up    move up
     bindsym $mod+Shift+$right move right
     # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Left  move left
+    bindsym $mod+Shift+Down  move down
+    bindsym $mod+Shift+Up    move up
     bindsym $mod+Shift+Right move right
 #
 # Workspaces:
 #
+    set $ws1 1
+    set $ws2 2
+    set $ws3 3
+    set $ws4 4
+    set $ws5 5
+    set $ws6 6
+    set $ws7 7
+    set $ws8 8
+    set $ws9 9
+    set $wsX X
+
     # Switch to workspace
-    bindsym $mod+exclam         workspace number 1
-    bindsym $mod+bracketleft    workspace number 2
-    bindsym $mod+braceleft      workspace number 3
-    bindsym $mod+parenleft      workspace number 4
-    bindsym $mod+plus           workspace number 5
-    bindsym $mod+equal          workspace number 6
-    bindsym $mod+parenright     workspace number 7
-    bindsym $mod+braceright     workspace number 8
-    bindsym $mod+bracketright   workspace number 9
-    bindsym $mod+asterisk       workspace number 10
+    bindsym $mod+exclam         workspace $ws1
+    bindsym $mod+bracketleft    workspace $ws2
+    bindsym $mod+braceleft      workspace $ws3
+    bindsym $mod+parenleft      workspace $ws4
+    bindsym $mod+plus           workspace $ws5
+    bindsym $mod+equal          workspace $ws6
+    bindsym $mod+parenright     workspace $ws7
+    bindsym $mod+braceright     workspace $ws8
+    bindsym $mod+bracketright   workspace $ws9
+    bindsym $mod+asterisk       workspace $wsX
     # Move focused container to workspace
-    bindsym $mod+1 move container to workspace number 1
-    bindsym $mod+2 move container to workspace number 2
-    bindsym $mod+3 move container to workspace number 3
-    bindsym $mod+4 move container to workspace number 4
-    bindsym $mod+5 move container to workspace number 5
-    bindsym $mod+6 move container to workspace number 6
-    bindsym $mod+7 move container to workspace number 7
-    bindsym $mod+8 move container to workspace number 8
-    bindsym $mod+9 move container to workspace number 9
-    bindsym $mod+0 move container to workspace number 10
-
-    workspace 1 output DP-4
-    workspace 2 output DP-4
-    workspace 3 output DP-4
-    workspace 4 output DP-4
-    workspace 5 output DP-4
-    workspace 6 output DP-6
-    workspace 7 output DP-6
-    workspace 8 output DP-6
-    workspace 9 output DP-6
-    workspace 10 output DP-6
-
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
+    bindsym $mod+1 move container to workspace $ws1
+    bindsym $mod+2 move container to workspace $ws2
+    bindsym $mod+3 move container to workspace $ws3
+    bindsym $mod+4 move container to workspace $ws4
+    bindsym $mod+5 move container to workspace $ws5
+    bindsym $mod+6 move container to workspace $ws6
+    bindsym $mod+7 move container to workspace $ws7
+    bindsym $mod+8 move container to workspace $ws8
+    bindsym $mod+9 move container to workspace $ws9
+    bindsym $mod+0 move container to workspace $wsX
+    # Assign workspaces to outputs
+    workspace $ws1 output DP-4
+    workspace $ws2 output DP-4
+    workspace $ws3 output DP-4
+    workspace $ws4 output DP-4
+    workspace $ws5 output DP-4
+    workspace $ws6 output DP-6
+    workspace $ws7 output DP-6
+    workspace $ws8 output DP-6
+    workspace $ws9 output DP-6
+    workspace $wsX output DP-6
 
 #
 # Layout stuff:
@@ -159,7 +159,7 @@ output * resolution 2560x1440@144Hz
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
+    bindsym $mod+m splith
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
@@ -198,16 +198,16 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $left  resize shrink width  10px
+    bindsym $down  resize grow   height 10px
+    bindsym $up    resize shrink height 10px
+    bindsym $right resize grow   width  10px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym Left  resize shrink width  10px
+    bindsym Down  resize grow   height 10px
+    bindsym Up    resize shrink height 10px
+    bindsym Right resize grow   width  10px
 
     # Return to default mode
     bindsym Return mode "default"
@@ -221,7 +221,7 @@ default_border normal 1
 # gaps horizontal 12
 # gaps bottom 8
 
-font 0xProto Nerd Font bold 8
+font 0xProto Nerd Font 10
 
 set $bg #242526
 set $fg #E6E6E6
@@ -247,7 +247,7 @@ set $white          #F8F8F8
 
 # class                 border  bground text    indicator child_border
 client.focused          $green  $green  $black  $gray_1   $bg
-client.focused_inactive $blue   $blue   $black  $bg       $bg
+client.focused_inactive $l_blue $l_blue $black  $bg       $bg
 client.unfocused        $bg     $bg     $fg     $bg       $bg
 client.urgent           $red    $red    $black  $red      $red
 
@@ -256,23 +256,25 @@ client.urgent           $red    $red    $black  $red      $red
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     # gaps 8 12
-    font 0xProto Nerd Font medium 10
+    font 0xProto Nerd Font 10
     position top
+    tray_padding 6
+    status_padding 6
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %H:%M:%S'; do sleep 1; done
+    status_command i3blocks
 
     colors {
         statusline $gray_3
         background $black
-        focused_workspace $green $green $black
-        active_workspace $blue $blue $black
+        focused_workspace  $green  $green  $black
+        active_workspace $l_blue $l_blue $black
         inactive_workspace $gray_1 $gray_1 $gray_3
-        urgent_workspace $red $red $gray_3
+        urgent_workspace $red    $red    $gray_3
     }
 }
 
 include /etc/sway/config.d/*
 
-# exec qpwgraph -m &
+# exec qpwgraph -m 

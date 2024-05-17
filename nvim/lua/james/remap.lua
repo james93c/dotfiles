@@ -6,9 +6,9 @@ vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- remap ; to : for easier quit/write etc
-vim.keymap.set('n', ';', ':')
-vim.keymap.set('n', '.', ';')
-vim.keymap.set('n', '<leader>bb', '<C-^><CR>')
+-- vim.keymap.set('n', ';', ':')
+-- vim.keymap.set('n', '.', ';')
+vim.keymap.set('n', '<leader>b', '<C-^><CR>')
 
 vim.keymap.set('n', '<leader>m', '@m')
 vim.keymap.set('n', '<CR>', 'o<esc>')

@@ -1,4 +1,4 @@
 function s
-  kitty +kitten ssh $argv
+  ssh $argv
 end
 
