@@ -18,6 +18,7 @@ set $term foot
 set $files nautilus
 set $ftp filezilla
 set $browser firefox
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -40,7 +41,7 @@ exec swayidle -w \
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
-input type:Touchpad {
+input type:touchpad {
     dwt enabled
     tap enabled
     natural_scroll enabled
@@ -69,6 +70,7 @@ input type:Touchpad {
     # Start browser
     bindsym $mod+b exec $browser
 
+    bindsym Print exec grim
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -266,15 +268,15 @@ bar {
     status_command i3blocks
 
     colors {
-        statusline $gray_3
-        background $black
-        focused_workspace  $green  $green  $black
-        active_workspace $l_blue $l_blue $black
-        inactive_workspace $gray_1 $gray_1 $gray_3
-        urgent_workspace $red    $red    $gray_3
+        statusline         $fg
+        background         $black
+        focused_workspace  $green   $green   $black
+        active_workspace   $l_blue  $l_blue  $black
+        inactive_workspace $gray_1  $gray_1  $fg
+        urgent_workspace   $red     $red     $fg
     }
 }
 
 include /etc/sway/config.d/*
 
-# exec qpwgraph -m 
+# exec qpwgraph -m
