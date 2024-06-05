@@ -10,6 +10,7 @@ export ANDROID_SDK_ROOT=/home/james/Android/Sdk
 
 set GOPATH /home/james/go
 pyenv init - | source
+zoxide init fish | source
 
 # pnpm
 set -gx PNPM_HOME "/home/james/.local/share/pnpm"

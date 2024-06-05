@@ -22,12 +22,12 @@ set $browser firefox
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu rofi -show combi
+set $menu wofi --show drun
 
 include /etc/sway/config-vars.d/*
 
 ### Output configuration
-output * bg /home/james/Pictures/Wallpapers/budapest.jpg fill
+output * bg /home/james/Pictures/Wallpapers/cyberpunk.png fill
 output * resolution 2560x1440@144Hz
 
 ### Idle configuration
@@ -141,17 +141,20 @@ input type:Touchpad {
     bindsym $mod+8 move container to workspace $ws8
     bindsym $mod+9 move container to workspace $ws9
     bindsym $mod+0 move container to workspace $wsX
+
+    set $dp1 DP-4
+    set $dp2 DP-6
     # Assign workspaces to outputs
-    workspace $ws1 output DP-4
-    workspace $ws2 output DP-4
-    workspace $ws3 output DP-4
-    workspace $ws4 output DP-4
-    workspace $ws5 output DP-4
-    workspace $ws6 output DP-6
-    workspace $ws7 output DP-6
-    workspace $ws8 output DP-6
-    workspace $ws9 output DP-6
-    workspace $wsX output DP-6
+    workspace $ws1 output $dp1
+    workspace $ws2 output $dp1
+    workspace $ws3 output $dp1
+    workspace $ws4 output $dp1
+    workspace $ws5 output $dp1
+    workspace $ws6 output $dp2
+    workspace $ws7 output $dp2
+    workspace $ws8 output $dp2
+    workspace $ws9 output $dp2
+    workspace $wsX output $dp2
 
 #
 # Layout stuff:

@@ -317,13 +317,14 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true, js_templ = true, templ = true }
+        local disable_filetypes = { c = true, cpp = true, js_templ = true }
         return {
           timeout_ms = 500,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
         }
       end,
       formatters_by_ft = {
+        templ = { 'templ' },
         lua = { 'stylua' },
         go = { 'gofmt' },
         javascript = { 'prettier' },
@@ -499,7 +500,7 @@ require('lazy').setup({
       -- vim.cmd.hi 'Comment gui=none'
       -- vim.cmd.highlight 'Normal guibg=#292A2C'
       -- vim.cmd.highlight 'Visual guibg=#3C3D3E'
-      -- vim.cmd.highlight 'PmenuSel guibg=#606161'
+      vim.cmd.highlight 'NormalFloat guibg=#333539'
     end,
   },
 
@@ -647,30 +648,38 @@ require('lazy').setup({
           templ = 'templ',
         },
       }
-      vim.api.nvim_command 'autocmd BufRead,BufNewFile *.js.templ set filetype=js_templ' -- no sign column
-
-      vim.treesitter.language.register('templ', 'js_templ')
     end,
   },
   {
-    'kdheepak/lazygit.nvim',
-    cmd = {
-      'LazyGit',
-      'LazyGitConfig',
-      'LazyGitCurrentFile',
-      'LazyGitFilter',
-      'LazyGitFilterCurrentFile',
-    },
-    -- optional for floating window border decoration
+    'NeogitOrg/neogit',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim',
+
+      'nvim-telescope/telescope.nvim',
     },
-    -- setting the keybinding for LazyGit with 'keys' is recommended in
-    -- order to load the plugin when the command is run for the first time
-    keys = {
-      { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
-    },
+    config = true,
   },
+
+  -- {
+  --   'kdheepak/lazygit.nvim',
+  --   cmd = {
+  --     'LazyGit',
+  --     'LazyGitConfig',
+  --     'LazyGitCurrentFile',
+  --     'LazyGitFilter',
+  --     'LazyGitFilterCurrentFile',
+  --   },
+  --   -- optional for floating window border decoration
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --   },
+  --   -- setting the keybinding for LazyGit with 'keys' is recommended in
+  --   -- order to load the plugin when the command is run for the first time
+  --   keys = {
+  --     { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
+  --   },
+  -- },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
