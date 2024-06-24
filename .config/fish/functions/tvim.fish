@@ -6,6 +6,10 @@ function tvim
 
   set SESSIONNAME "vim_$i"
 
+  if count $argv > /dev/null
+    zi $argv
+  end
+
   tmux new-session -s $SESSIONNAME -d
   tmux split-window -t $SESSIONNAME -h -l 80
   tmux select-pane -t $SESSIONNAME:0.0
@@ -15,6 +19,10 @@ function tvim
   tmux select-window -t 0
 
   tmux attach -t $SESSIONNAME
+
+  if count $argv > /dev/null
+    z -
+  end
   
 end
 

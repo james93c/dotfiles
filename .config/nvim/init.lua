@@ -327,11 +327,13 @@ require('lazy').setup({
         templ = { 'templ' },
         lua = { 'stylua' },
         go = { 'gofmt' },
+        json = { 'prettier' },
         javascript = { 'prettier' },
         typescript = { 'prettier' },
         javascriptreact = { 'prettier' },
         typescriptreact = { 'prettier' },
-        sql = { 'sql-formatter' },
+        sql = { 'sqlfluff' },
+        ocaml = { 'ocamlformat' },
       },
     },
   },
@@ -392,7 +394,7 @@ require('lazy').setup({
         -- No, but seriously. Please read `:help ins-completion`, it is really good!
         mapping = cmp.mapping.preset.insert {
           -- Select the [n]ext item
-          ['<C-y>'] = cmp.mapping.select_next_item(),
+          ['<C-n>'] = cmp.mapping.select_next_item(),
           -- Select the [p]revious item
           ['<C-p>'] = cmp.mapping.select_prev_item(),
 
@@ -403,7 +405,7 @@ require('lazy').setup({
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          ['<enter>'] = cmp.mapping.confirm { select = true },
+          ['<C-y>'] = cmp.mapping.confirm { select = true },
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
@@ -446,47 +448,36 @@ require('lazy').setup({
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('harpoon').setup()
-
-      local harpoon = require 'harpoon'
       local mark = require 'harpoon.mark'
       local ui = require 'harpoon.ui'
 
-      vim.keymap.set('n', '<C-a>', function()
+      vim.keymap.set('n', '<leader>a', function()
         mark.add_file()
       end)
-      vim.keymap.set('n', '<C-e>', function()
+      vim.keymap.set('n', '<leader>e', function()
         ui.toggle_quick_menu()
       end)
 
-      vim.keymap.set('n', '<C-h>', function()
+      vim.keymap.set('n', '<leader>!', function()
         ui.nav_file(1)
       end)
-      vim.keymap.set('n', '<C-t>', function()
+      vim.keymap.set('n', '<leader>[', function()
         ui.nav_file(2)
       end)
-      vim.keymap.set('n', '<C-n>', function()
+      vim.keymap.set('n', '<leader>{', function()
         ui.nav_file(3)
       end)
-      vim.keymap.set('n', '<C-s>', function()
+      vim.keymap.set('n', '<leader>(', function()
         ui.nav_file(4)
+      end)
+      vim.keymap.set('n', '<leader>+', function()
+        ui.nav_file(5)
       end)
       vim.keymap.set('n', '<C-j>', function()
         ui.nav_prev()
       end)
       vim.keymap.set('n', '<C-k>', function()
         ui.nav_next()
-      end)
-      vim.keymap.set('n', '<leader><C-h>', function()
-        harpoon:list():replace_at(1)
-      end)
-      vim.keymap.set('n', '<leader><C-t>', function()
-        harpoon:list():replace_at(2)
-      end)
-      vim.keymap.set('n', '<leader><C-n>', function()
-        harpoon:list():replace_at(3)
-      end)
-      vim.keymap.set('n', '<leader><C-s>', function()
-        harpoon:list():replace_at(4)
       end)
     end,
   },
@@ -659,6 +650,9 @@ require('lazy').setup({
       'nvim-telescope/telescope.nvim',
     },
     config = true,
+    keys = {
+      { '<leader>lg', '<cmd>Neogit<cr>', desc = 'Neogit' },
+    },
   },
 
   -- {
