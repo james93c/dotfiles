@@ -297,7 +297,14 @@ require('lazy').setup({
       }
     end,
   },
-
+  {
+    'stevearc/oil.nvim',
+    opts = {
+      vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' }),
+    },
+    -- Optional dependencies
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+  },
   { -- Autoformat
     'stevearc/conform.nvim',
     lazy = false,
@@ -563,22 +570,22 @@ require('lazy').setup({
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
-  {
-    'preservim/nerdtree',
-    config = function()
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-
-      -- optionally enable 24-bit colour
-      vim.opt.termguicolors = true
-
-      -- custom mappings
-      vim.keymap.set('n', '<leader>n', '<cmd>NERDTreeFocus<CR>')
-
-      vim.api.nvim_command "autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif"
-      vim.api.nvim_command "autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_d+' && bufname('%') !~ 'NERD_tree_d+' && winnr('$') > 1 |  let buf=bufnr() | buffer# | execute \"normal! <C-W>w\" | execute 'buffer'.buf | endif"
-    end,
-  },
+  -- {
+  --   'preservim/nerdtree',
+  --   config = function()
+  --     vim.g.loaded_netrw = 1
+  --     vim.g.loaded_netrwPlugin = 1
+  --
+  --     -- optionally enable 24-bit colour
+  --     vim.opt.termguicolors = true
+  --
+  --     -- custom mappings
+  --     vim.keymap.set('n', '<leader>n', '<cmd>NERDTreeFocus<CR>')
+  --
+  --     vim.api.nvim_command "autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif"
+  --     vim.api.nvim_command "autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_d+' && bufname('%') !~ 'NERD_tree_d+' && winnr('$') > 1 |  let buf=bufnr() | buffer# | execute \"normal! <C-W>w\" | execute 'buffer'.buf | endif"
+  --   end,
+  -- },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
