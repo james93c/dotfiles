@@ -39,7 +39,7 @@ set $edp eDP-1
 output $edp resolution 2880x1800@90Hz scale 1.5
 
 ### Output configuration
-output * bg /home/james/Pictures/Wallpapers/forest2.png fill
+output * bg /home/james/Pictures/Wallpapers/wallpaper.png fill
 
 ### Idle configuration
 exec swayidle -w \
