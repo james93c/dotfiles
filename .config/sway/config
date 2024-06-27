@@ -232,10 +232,12 @@ gaps outer 4
 
 font 0xProto Nerd Font 10
 
-include kanagawa.conf
+include panda.conf
+
+include colorscheme.conf
 
 # class                 border  bground text    indicator child_border
-client.focused          $green  $green  $black  #A7DF78   $green
+client.focused          $focussed  $focussed  $black  $indicator   $focussed
 client.focused_inactive $transparent     $transparent     $black  $transparent       $transparent    
 client.unfocused        $transparent     $transparent     $black  $transparent       $transparent
 client.urgent           $red    $red    $black  $red      $red
@@ -257,9 +259,9 @@ bar {
     colors {
         statusline         $fg
         background         $black
-        focused_workspace  $green   $green   $black
-        active_workspace   $l_blue  $l_blue  $black
-        inactive_workspace $gray_2  $gray_2  $fg
+        focused_workspace  $focussed   $focussed   $black
+        active_workspace   $active  $active  $black
+        inactive_workspace $inactive  $inactive  $fg
         urgent_workspace   $red     $red     $fg
     }
 }
