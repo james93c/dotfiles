@@ -240,8 +240,8 @@ include colorscheme.conf
 
 # class                 border        bground       text    indicator     child_border
 client.focused          $focussed     $focussed     $black  $indicator    $focussed
-client.focused_inactive $transparent  $transparent  $black  $transparent  $transparent    
-client.unfocused        $transparent  $transparent  $black  $transparent  $transparent
+client.focused_inactive $transparent  $transparent  $fg     $transparent  $transparent
+client.unfocused        $transparent  $transparent  $fg     $transparent  $transparent
 client.urgent           $red          $red          $black  $red          $red
 
 # Status Bar:
